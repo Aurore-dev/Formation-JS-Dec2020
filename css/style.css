@@ -1,4 +1,56 @@
+
+
+body{
+    background-image: url('../img/abstraction-green-white-line-1107887.jpg');
+    /* background-size: 100vw 100vh; */
+}
+
+/*selecteur h1*/
 h1{
-    color: aqua;
+    color: rgb(142, 201, 4);
     font-weight: 900;
+}
+
+/*selecteur formulaire*/
+#formulaire{
+    border :1px solid black;
+    border-radius: 7px;
+    text-align: center;
+    width :20%;
+    min-width:300px;
+}
+
+/*selecteur postit*/
+.postit{
+    background-color : #145e2d;
+    border-bottom-right-radius : 25px ;
+    width :20%;
+    min-width:300px;
+    display: inline-block;
+    padding: 10px;
+    margin-left: 15px;
+    border: 1px solid  rgb(8, 34, 8);
+    box-shadow: 15px 15px 25px rgb(8, 34, 8);
+    text-align: center;
+}
+
+.postit-titre{
+    font-size: 30pt;
+    font-weight: 700;
+    text-decoration: underline rgb(142, 201, 4);
+    margin-bottom: 8px;
+}
+
+.datetime{
+    font-weight: 900;
+    font-size: large;
+}
+
+
+@media print{
+body{
+    background-image: none;
+    background-color: thistle;
+    color: teal;
+}
 }
