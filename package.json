@@ -1,0 +1,23 @@
+{
+  "name": "Formation-JS-Dec2020",
+  "version": "1.0.0",
+  "description": "Formation-JS-Dec2020",
+  "main": "index.js",
+  "scripts": {
+    "test": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aurore-dev/Formation-JS-Dec2020.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aurore-dev/Formation-JS-Dec2020/issues"
+  },
+  "homepage": "https://github.com/Aurore-dev/Formation-JS-Dec2020#readme",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
