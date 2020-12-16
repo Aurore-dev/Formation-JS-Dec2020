@@ -53,11 +53,21 @@ h1{
     font-size: large;
 }
 
-
+#list>*{
+    vertical-align: top;
+}
 @media print{
 body{
     background-image: none;
     background-color: thistle;
     color: teal;
 }
+}
+.close{
+    float: right;
+}
+
+.close img{
+    width: 32px;
+    height: 32px;
 }

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Post-It&copy;</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="/js/index.js"></script>
+
 </head>
 
 <body>
@@ -17,14 +19,14 @@
                     <h1>Titre de la note :</h1><input type="text" name="title" id="title" placeholder="saisissez le titre" /><br/>
                     <div style="display: inline-block;">
                         <h4>Date :</h4>
-                        <input type="date" name="date" id="date" />
+                        <input type="date" name="date" id="date"  />
                     </div>
                     <div style="display: inline-block;">
                         <h4>Heure :</h4>
                         <input type="time" name="time" id="time" />
                     </div>
                     <h4>Description</h2>
-                    <textarea name="description" id="description" placeholder="saisissez la description"></textarea>
+                    <textarea name="description" id="description" placeholder="saisissez la description" ></textarea>
                     <div><input type="reset" value="Réinit." /> <input type="submit" value="valider" /></div>
                 </form>
             </div>
@@ -32,14 +34,7 @@
         <hr>
         <div id="list">
             <div class="postit">
-                <div class="postit-titre"> Mon titre de note </div>
-                date : 2020-01-01 heure : 12:00:00
-                <h2>Description</h2>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos non voluptatem aspernatur numquam
-                accusantium dolorem nesciunt, explicabo eum assumenda eligendi, similique id laudantium eius ipsa
-                dignissimos aut cumque, sint iusto.
-            </div>
-            <div class="postit">
+                <div class='close'><img src="/img/croixVerte.png"/></div>
                 <div class="postit-titre"> Mon titre de note </div>
                 date : <span class="datetime">2020-01-01</span> heure : <span class="datetime">12:00:00</span>
                 <h2>Description</h2>
@@ -50,6 +45,8 @@
         </div>
     </div>
     <script src="/js/index.js"></script>
+    <!--<script src="node_modules/req"></script>
+    <script src="node_modules/moment/dist/moment.js"></script>-->
 </body>
 
 </html>
