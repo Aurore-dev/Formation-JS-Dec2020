@@ -29,7 +29,7 @@ h1{
 
 /*selecteur postit*/
 .postit{
-    background-color : #145e2d;
+    background-color : #145e2dbb;
     border-bottom-right-radius : 25px ;
     width :20%;
     min-width:300px;
