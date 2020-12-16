@@ -1,7 +1,7 @@
 
 
 body{
-    background-image: url('../img/abstraction-green-white-line-1107887.jpg');
+    background-image: url('../img/noel.jpg');
     /* background-size: 100vw 100vh; */
 }
 
@@ -15,9 +15,16 @@ h1{
 #formulaire{
     border :1px solid black;
     border-radius: 7px;
+    width :40%;
+    min-width:400px;
+    margin-left: 30%;
+    padding: 10px;
+    background-color: rgba(0, 128, 0, 0.301);
+    box-shadow: 30px 30px 45px rgb(8, 34, 8);
     text-align: center;
-    width :20%;
-    min-width:300px;
+}
+#editor{
+    margin : 25px;
 }
 
 /*selecteur postit*/
