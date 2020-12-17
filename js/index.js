@@ -6,7 +6,7 @@ addEventListener('load',function(evt){
         console.log('jai fini de recevoir mes postit et voici la liste :',mesPostIts);
         mesPostIts.forEach(function(postit){
             console.log(postit);
-            createPostIt(postit.titre,postit.datetime.substring(0,10),postit.datetime.substring(12),postit.description);
+            createPostItByObject(postit);
         })
 
     });
@@ -56,6 +56,26 @@ function createPostIt(titre,date,heure,description){
     <div class="postit-titre">'+titre+'</div>\
     date : <span class="datetime">'+date+'</span> heure : <span class="datetime">'+heure+'</span>\
     <h2>Description</h2>'+description;
+
+    postIt.querySelector('.close img').addEventListener('click',deletePostIt);
+
+    var liste= document.querySelector('#list');
+
+    liste.append(postIt);
+}
+/**
+ * Fonction de création d'un post it ajoutdans la balise #list par le biais d'un objet postit
+ * @param {object} postitInput
+ */
+function createPostItByObject(postitInput){
+    var postIt = document.createElement('div');
+    postIt.id="postit-"+postitInput.id;
+    postIt.classList.add('postit');
+
+    postIt.innerHTML='<div class="close"><img src="/img/croixVerte.png"/></div>\
+    <div class="postit-titre">'+postitInput.titre+'</div>\
+    date : <span class="datetime">'+postitInput.datetime.substring(0,10)+'</span> heure : <span class="datetime">'+postitInput.datetime.substring(11)+'</span>\
+    <h2>Description</h2>'+postitInput.description;
 
     postIt.querySelector('.close img').addEventListener('click',deletePostIt);
 
