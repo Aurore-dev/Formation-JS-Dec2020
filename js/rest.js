@@ -30,7 +30,7 @@ function post(ressourceUrl,ressource){
     xhr.open('POST',BASE_URL+ressourceUrl);
     //specfication du type de contenu
     xhr.setRequestHeader('Content-Type','application/json');
-    //specification de ce qui est eattendu en retour
+    //specification de ce qui est attendu en retour
     xhr.setRequestHeader('Accept','application/json');
     xhr.onreadystatechange=function(evt){
         if(xhr.readyState < 4){return;}
@@ -40,4 +40,36 @@ function post(ressourceUrl,ressource){
     xhr.send(JSON.stringify(ressource));
 }
 
-get('/postit');
+/**
+ * Suppression d'une ressource sur ressource URL
+ * @param {*} ressourceUrl 
+ */
+function remove(ressourceUrl){
+    var xhr = new XMLHttpRequest();
+    xhr.open('DELETE',BASE_URL+ressourceUrl);
+    xhr.onreadystatechange=function(evt){
+        if(xhr.readyState<4){return;}
+        console.log(JSON.parse(xhr.response));
+        xhr.send();
+    }
+}
+
+/**
+ * Permet l'updated'une ressource sur l'a ressourceUrl
+ * @param {Uri} ressourceUrl chemin du post
+ * @param {Object} ressource  data à envoyer
+ */
+function put(ressourceUrl,ressource){
+    var xhr = new XMLHttpRequest();
+    xhr.open('PUT',BASE_URL+ressourceUrl);
+    //specfication du type de contenu
+    xhr.setRequestHeader('Content-Type','application/json');
+    //specification de ce qui est attendu en retour
+    xhr.setRequestHeader('Accept','application/json');
+    xhr.onreadystatechange=function(evt){
+        if(xhr.readyState < 4){return;}
+        console.log(JSON.parse(xhr.response));
+    }
+    //transformation en JSON des données
+    xhr.send(JSON.stringify(ressource));
+}

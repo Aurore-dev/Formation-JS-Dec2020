@@ -17,6 +17,12 @@
       "datetime": "2020-12-17T11:06:00",
       "description": "La description du postit numéro 3",
       "id": 2
+    },
+    {
+      "titre": "ma note dynamique",
+      "datetime": "2020-02-01T00:05:00",
+      "description": "je teste la note dynamique",
+      "id": 3
     }
   ],
   "proprietaire": {
