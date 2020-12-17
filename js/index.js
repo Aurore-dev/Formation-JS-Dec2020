@@ -55,7 +55,13 @@ function createPostIt(titre,date,heure,description){
     liste.append(postIt);
 }
 
-function deletePostIt (params){
-    console.log('evenement lié à la suppression');
-    
+/**
+ * Fonction de suppression du post it
+ * @param {*} evt 
+ */
+function deletePostIt (evt){
+    //console.log('evenement lié à la suppression',evt);
+   // Pouvait etre utiliser
+  //  evt.path[2];
+    evt.currentTarget.parentElement.parentElement.remove();
 }

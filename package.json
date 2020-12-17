@@ -4,7 +4,8 @@
   "description": "Formation-JS-Dec2020",
   "main": "index.js",
   "scripts": {
-    "test": "lite-server"
+    "test": "lite-server",
+    "start": "json-server -p 2607 db/db.json"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/Aurore-dev/Formation-JS-Dec2020#readme",
   "dependencies": {
+    "json-server": "^0.16.3",
     "lite-server": "^2.6.1",
     "moment": "^2.29.1",
     "require": "^2.4.20",

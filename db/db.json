@@ -1,0 +1,28 @@
+{
+  "postit": [
+    {
+      "id": 0,
+      "titre": "Mon 1er postit",
+      "datetime": "2020-12-17T10:06:00",
+      "description": "La description du postit"
+    },
+    {
+      "id": 1,
+      "titre": "Mon 2eme postit",
+      "datetime": "2020-12-16T11:06:00",
+      "description": "La description du postit numéro 2"
+    },
+    {
+      "titre": "Mon 3eme postit modif",
+      "datetime": "2020-12-17T11:06:00",
+      "description": "La description du postit numéro 3",
+      "id": 2
+    }
+  ],
+  "proprietaire": {
+    "nom": "MOUNIER",
+    "prenom": "Aurore",
+    "mail": "mounier.aurore@gmail.com",
+    "tel": "0674759533"
+  }
+}
