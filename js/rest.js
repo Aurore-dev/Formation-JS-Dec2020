@@ -75,4 +75,13 @@ var Crud = function (baseurl){
         //transformation en JSON des données
         xhr.send(JSON.stringify(ressource));
     }
+
+    /**
+     * Zone d'exposition des focntions en public
+     * pour acces depuis l'exterieur de l'isntance
+     */
+    this.recuperer=get;  
+    this.creer=post;  
+    this.mettreAJour=put;  
+    this.supprimer=remove;  
 }
