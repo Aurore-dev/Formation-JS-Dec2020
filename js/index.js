@@ -1,8 +1,15 @@
 // const moment = require("moment");
-
 addEventListener('load',function(evt){
     initialisationJS();
     document.querySelector('form').addEventListener('submit',formSubmitted);
+    (new Crud(BASE_URL)).recuperer('/postit',function(mesPostIts){
+        console.log('jai fini de recevoir mes postit et voici la liste :',mesPostIts);
+        mesPostIts.forEach(function(postit){
+            console.log(postit);
+            createPostIt(postit.titre,postit.datetime.substring(0,10),postit.datetime.substring(12),postit.description);
+        })
+
+    });
 });
 
 function initialisationJS(){
@@ -10,6 +17,8 @@ function initialisationJS(){
     jsload.innerHTML='mon <span style="font-weight:900">JS</span> est chargé !';
     jsload.style.backgroundColor='LIME';
 }
+
+
 
 
 function formSubmitted(evt){

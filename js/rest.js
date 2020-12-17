@@ -6,7 +6,7 @@ var Crud = function (baseurl){
      * Permet l'apple HTTP avec XMLHttpRequest
      * @param {*} ressourceUrl chemin de la reponse
      */
-    function get (ressourceUrl){
+    function get (ressourceUrl,callback){
         //instanciation de XHR
         var xhr = new XMLHttpRequest();
         //ouverture de la connexion
@@ -17,6 +17,7 @@ var Crud = function (baseurl){
             if(evt.currentTarget.readyState < XMLHttpRequest.DONE){return;}
             var objt=JSON.parse(evt.currentTarget.response);
             console.log(objt);
+            callback(objt);
         }
         //envoi de la requete
         xhr.send();
@@ -69,7 +70,7 @@ var Crud = function (baseurl){
         //specification de ce qui est attendu en retour
         xhr.setRequestHeader('Accept','application/json');
         xhr.onreadystatechange=function(evt){
-            if(xhr.readyState < 4){return;}
+            if(xhr.readyState<4){return;}
             console.log(JSON.parse(xhr.response));
         }
         //transformation en JSON des données
