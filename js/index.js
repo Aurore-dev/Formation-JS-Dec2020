@@ -34,10 +34,10 @@ function formSubmitted(evt) {
 
     var postit = {
         titre: monFormulaire["title"].value,
-        datetime: evt.target[1].value + 'T' + evt.target[2].value,
-        description: evt.target[3].value
+        datetime: monFormulaire["date"].value + 'T' + monFormulaire["time"].value,
+        description: monFormulaire["description"].value
     };
-    console.log(postit);
+    // console.log(postit);
     (new Crud(BASE_URL)).creer('/postit', postit, function (objSaved) {
         createPostItByObject(objSaved);
     });
@@ -77,12 +77,12 @@ function createPostItByObject(postitInput) {
     var postIt = document.createElement('div');
     postIt.id = "postit-" + postitInput.id;
     postIt.classList.add('postit');
-    postIt.addEventListener('click', putinformclickedpostit);
+    postIt.addEventListener('dblclick', putinformclickedpostit);
 
     postIt.innerHTML = '<div class="close"><img src="/img/croixVerte.png"/></div>\
     <div class="postit-titre">'+ postitInput.titre + '</div>\
-    date : <span class="datetime">'+ postitInput.datetime.substring(0, 10) + '</span> heure : <span class="datetime">' + postitInput.datetime.substring(11) + '</span>\
-    <h2>Description</h2>'+ postitInput.description;
+    date : <span class="datetime postit-date">'+ postitInput.datetime.substring(0, 10) + '</span> heure : <span class="datetime postit-heure">' + postitInput.datetime.substring(11) + '</span>\
+    <h2>Description</h2><div class="postit-description">'+ postitInput.description + '</div>';
 
     postIt.querySelector('.close img').addEventListener('click', deletePostIt);
 
@@ -96,7 +96,7 @@ function createPostItByObject(postitInput) {
  * @param {*} evt 
  */
 function deletePostIt(evt) {
-    //permet de ne pas faire l'evt click sur div postit qui est derriere
+    //permet de ne pas faire l'evt click sur div postit qui est derriere car click si dblclick sur post it cela ne seert à rien
     evt.stopPropagation();
     // window.evt=evt;
     console.log('evenement lié à la suppression', evt);
@@ -111,5 +111,20 @@ function deletePostIt(evt) {
 
 function putinformclickedpostit(evt) {
     console.log('j\'ai double cliquer sur un postit', evt)
+    console.log(document.querySelector('.postit'));
+    var dompostit = evt.currentTarget;
+    console.log(
+        dompostit.id.substring(7),
+        dompostit.querySelector('.postit-titre').innerText,
+        dompostit.querySelector('.postit-date').innerText,
+        dompostit.querySelector('.postit-heure').innerText,
+        dompostit.querySelector('.postit-description').innerText
+    );
+    console.log(document.forms['editor-form']);
+    document.forms['editor-form']['id'].value = dompostit.id.substring(7);
+    document.forms['editor-form']['title'].value = dompostit.querySelector('.postit-titre').innerText;
+    document.forms['editor-form']['date'].value = dompostit.querySelector('.postit-date').innerText;
+    document.forms['editor-form']['time'].value = dompostit.querySelector('.postit-heure').innerText;
+    document.forms['editor-form']['description'].value = dompostit.querySelector('.postit-description').innerText;
 
 }
