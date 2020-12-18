@@ -2,6 +2,7 @@
 addEventListener('load', function (evt) {
     initialisationJS();
     document.querySelector('form').addEventListener('submit', formSubmitted);
+    // document.forms['editor-form']['date'].value=(new Date()).toISOString().substring.substring(0,10);
     (new Crud(BASE_URL)).recuperer('/postit', function (mesPostIts) {
         console.log('jai fini de recevoir mes postit et voici la liste :', mesPostIts);
         mesPostIts.forEach(function (postit) {
@@ -37,13 +38,17 @@ function formSubmitted(evt) {
         datetime: monFormulaire["date"].value + 'T' + monFormulaire["time"].value,
         description: monFormulaire["description"].value
     };
-    // console.log(postit);
-    (new Crud(BASE_URL)).creer('/postit', postit, function (objSaved) {
+    if (monFormulaire["id"].value !== '') {
+        postit.id = monFormulaire["id"].value;
+    };
+    (new Crud(BASE_URL)).envoiRessource('/postit', postit, function (objSaved) {
+        if (undefined!==postit.id){
+            document.querySelector('#postit-'+postit.id).remove();
+        }
         createPostItByObject(objSaved);
-    });
-
-}
-
+   });
+   
+};
 
 /**
  * Fonction de création d'un post it ajoutdans la balise #list

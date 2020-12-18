@@ -12,6 +12,21 @@ var Crud = function (baseUrl){
     this.supprimer=_remove; 
 
     /**
+     * Gestion d'envoi au serveur soit put (si id present) soit post si pas d'id dans la ressource
+     * @param {*} ressourceUrl 
+     * @param {*} ressource 
+     * @param {*} callback 
+     */
+    this.envoiRessource=function(ressourceUrl,ressource,callback){
+        if(undefined!== ressource.id){
+            _put(ressourceUrl+'/'+ressource.id,ressource,callback);
+        }
+        else {
+            _post(ressourceUrl,ressource,callback);
+        }
+    }
+
+    /**
      * Permet l'apple HTTP avec XMLHttpRequest
      * @param {*} ressourceUrl chemin de la reponse
      */
@@ -75,7 +90,7 @@ var Crud = function (baseUrl){
      * @param {Uri} ressourceUrl chemin du post
      * @param {Object} ressource  data à envoyer
      */
-    function _put(ressourceUrl,ressource){
+    function _put(ressourceUrl,ressource,callback){
         var xhr = new XMLHttpRequest();
         xhr.open('PUT',baseUrl+ressourceUrl);
         //specfication du type de contenu
@@ -83,9 +98,10 @@ var Crud = function (baseUrl){
         //specification de ce qui est attendu en retour
         xhr.setRequestHeader('Accept','application/json');
         xhr.onreadystatechange=function(evt){
-            if(xhr.readyState<4){return;}
+            if(xhr.readyState<4 ||xhr.status!== 200){return;}
             console.log(JSON.parse(xhr.response));
-        }
+            callback(JSON.parse(xhr.response));
+        };
         //transformation en JSON des données
         xhr.send(JSON.stringify(ressource));
     }
