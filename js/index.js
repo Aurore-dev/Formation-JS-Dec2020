@@ -1,16 +1,28 @@
+var lastID = 0;
+// var descripteurDInterval;
+
 // const moment = require("moment");
 addEventListener('load', function (evt) {
     initialisationJS();
     document.querySelector('form').addEventListener('submit', formSubmitted);
-    // document.forms['editor-form']['date'].value=(new Date()).toISOString().substring.substring(0,10);
+    document.querySelector('form').addEventListener('reset', formReset);
+    document.forms['editor-form']['date'].value = (new Date()).toISOString().substring(0, 10);
+    document.forms['editor-form']['time'].value = (new Date()).toISOString().substring(11);
+    // pullingFunction();
+    // descripteurDInterval=setInterval(pullingFunction,5000);
     (new Crud(BASE_URL)).recuperer('/postit', function (mesPostIts) {
         console.log('jai fini de recevoir mes postit et voici la liste :', mesPostIts);
         mesPostIts.forEach(function (postit) {
+            if (lastID < postit.id) {
+                lastID = postit.id;
+            }
             console.log(postit);
             createPostItByObject(postit);
         })
 
     });
+    //suppression avant car maintenant rechergement tous les 5secondes si notes ajouter
+
 });
 
 function initialisationJS() {
@@ -19,7 +31,20 @@ function initialisationJS() {
     jsload.style.backgroundColor = 'LIME';
 }
 
-
+//var formReset=function(evt){...}
+/**
+ * reinitialiser meme l'id 
+ * @param {*} evt 
+ */
+const formReset = (evt) => {
+    const form = document.forms['editor-form'];
+    // evt.currentTarget["id"].value="";
+    for (let i = 0; i < form.length; i++) {
+        if (form[i].type !== 'reset' && form[i].type !== 'submit') {
+            form[i].value = '';
+        }
+    }
+}
 
 
 function formSubmitted(evt) {
@@ -42,12 +67,14 @@ function formSubmitted(evt) {
         postit.id = monFormulaire["id"].value;
     };
     (new Crud(BASE_URL)).envoiRessource('/postit', postit, function (objSaved) {
-        if (undefined!==postit.id){
-            document.querySelector('#postit-'+postit.id).remove();
+        if (undefined !== postit.id) {
+            document.querySelector('#postit-' + postit.id).remove();
         }
         createPostItByObject(objSaved);
-   });
-   
+        monFormulaire.reset();
+    });
+
+
 };
 
 /**
@@ -79,10 +106,11 @@ function createPostIt(titre, date, heure, description) {
  * @param {object} postitInput
  */
 function createPostItByObject(postitInput) {
+    // if(lastID<postit.id){lastID=postitInput.id}
     var postIt = document.createElement('div');
     postIt.id = "postit-" + postitInput.id;
     postIt.classList.add('postit');
-    postIt.addEventListener('dblclick', putinformclickedpostit);
+    postIt.addEventListener('click', putinformclickedpostit);
 
     postIt.innerHTML = '<div class="close"><img src="/img/croixVerte.png"/></div>\
     <div class="postit-titre">'+ postitInput.titre + '</div>\
@@ -132,4 +160,39 @@ function putinformclickedpostit(evt) {
     document.forms['editor-form']['time'].value = dompostit.querySelector('.postit-heure').innerText;
     document.forms['editor-form']['description'].value = dompostit.querySelector('.postit-description').innerText;
 
-}
+};
+
+// function pullingFunction(){
+//     const lastIDPlus1=lastID+1;
+//     // (new Crud(BASE_URL)).recuperer('postit?id_gte='+(lastID+1),)
+//      (new Crud(BASE_URL)).recuperer('postit?id_gte='+lastIDPlus1,function listeDesPostit(){
+//          listeDesPostit.map((element,index,function listeOrigine1(){
+//              lastID=(lastId<element.id?element.id:lastID);
+//              createPostItByObject(element);
+//          }))
+
+//      }
+// };
+/**
+ * Fonction pour recuperer les notes à partir de la valeur d'un id lastid
+ */
+
+//  function getLastIdInDom(){
+//      lastID=-1;
+//      const listeChildren=document.querySelector('#liste').children;
+//      for(domPostit in listeChildren){
+//          if(lastID<parseInt(domPostit.id.substring(7))){
+//              lastID=domPostit.id.substring(7);
+//          }
+//      }
+//  };
+// const pullingFunction = () => {
+//     getLastIdInDom();    
+//     const lastIdPlus1 = lastID + 1;
+//     (new Crud(BASE_URL)).recuperer('/postit?id_gte=' + lastIdPlus1, (listeDesPostIt) => {
+//         listeDesPostIt.map((element) => {
+//             lastID = (lastID < element.id ? element.id : lastID);
+//             createPostitByObject(element);
+//         });
+//     });
+// }
