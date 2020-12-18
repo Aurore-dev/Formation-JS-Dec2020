@@ -4,8 +4,9 @@
   "description": "Formation-JS-Dec2020",
   "main": "index.js",
   "scripts": {
-    "test": "lite-server",
-    "start": "json-server -p 2607 db/db.json"
+    "lite": "lite-server",
+    "json": "json-server -p 2607 db/db.json",
+    "start": "npm run lite | npm run json"
   },
   "repository": {
     "type": "git",
